@@ -1,0 +1,9 @@
+.at-tabs__item--active{
+    color: rgb(230, 67, 64);
+}
+.at-tabs__item--active::after{
+    height: 6px;
+    width: 80%;
+    left: 10%;
+    background-color: rgb(230, 67, 64);
+}
