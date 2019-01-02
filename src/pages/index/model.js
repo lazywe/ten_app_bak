@@ -1,59 +1,29 @@
 import * as homeApi from './service';
 
-let datas = [
-  {
-    title: '首页',
-    type: 1 
-  },
-  {
-    title: '书城',
-    type:1
-  },
-  {
-    title: '继续阅读',
-    type:2
-  },
-  {
-    title: '会员中心',
-    type:1
-  }
-]
-
 export default {
   namespace: 'index',
   state: {
-    current: 0,
-    types: datas.map((item) => {
-      return {
-        type:item.type
-      }
-    }),
-    top: datas.map((item) => {
-      return {
-        title:item.title
-      }
-    }),
-    pages: [],
-    publics: [],
+    page: 0,
+    publics: {
+      banners: [],
+      grids: []
+    },
     coupons: [],
   },
-  effects:{
+  effects: {
     /**
      * 加载头部数据
      */
-    * load(_, { call, put, select }) {
-      const { publics, current } = yield select(state => state.index);
+    * load(_, { call, put }) {
       const { code, data } = yield call(homeApi.load, {});
-      yield console.log(publics)
       if (code === 200) {
-        publics[current] = {
-          banners:data.banner,
-          grids:data.grid,
-        }
         yield put({
           type: 'save',
           payload: {
-            publics: publics,
+            publics: {
+              banners: data.banner,
+              grids: data.grid,
+            },
           }
         })
       }
@@ -62,19 +32,18 @@ export default {
      * 加载内容
      */
     * coupon(_, { call, put, select }) {
-      const { coupons, current } = yield select(state => state.index);
-      const { code, data } = yield call(homeApi.coupon, {});
-      yield console.log(coupons)
+      const { page, coupons } = yield select(state => state.index);
+      let npage = page + 1
+      const { code, data } = yield call(homeApi.coupon, {
+        page: npage,
+      });
       if (code === 200) {
-        if (coupons[current] == undefined) {
-          coupons[current] = data
-        } else {
-          coupons[current] = [...coupons[current],...data]
-        }
+        let ncoupons = [...coupons, ...data]
         yield put({
           type: 'save',
           payload: {
-            coupons: coupons,
+            coupons: ncoupons,
+            page: npage,
           }
         })
       }

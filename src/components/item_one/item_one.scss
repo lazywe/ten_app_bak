@@ -34,6 +34,7 @@
             }
             .author{
                 color: #f50;
+                font-size: 28px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -42,11 +43,13 @@
                 display: flex;
                 flex: 1;
                 .coupon-img{
+                    font-size: 24px;
                     background: #f50;
                     padding: 0 8px;
                     color: #fff;
                 }
                 .coupon-text{
+                    font-size: 24px;
                     margin-left: 5px;
                     color: #f50;
                 }
@@ -65,14 +68,18 @@
                 display: flex;
                 flex: 1;
                 .taro-text{
+                    font-size:22px;
                     margin-left: 4px;
                 }
             }
 
             .button{
                 display: flex;
-                .at-button{
-                    border-color:rgb(230, 67, 64);
+                .go_button{
+                    font-size: 30px;
+                    padding: 4px 10px;
+                    border-radius: 5px;
+                    border:2px solid rgb(230, 67, 64);
                     color: rgb(230, 67, 64);
                 }
             }
@@ -83,4 +90,3 @@
 .at-activity-indicator{
     justify-content: center;
 }
-  

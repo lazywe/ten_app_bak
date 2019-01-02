@@ -1,0 +1,47 @@
+
+@import '../../assets/style/coupon.scss';
+
+.detail_page{
+    .title {
+        padding:10px 20px;
+        color: #666;
+        font-size:28px;
+    }
+    .price_panal {
+        display: flex;
+        padding: 0 20px;
+        align-items: center;
+        .left{
+            flex: 1;
+            display: flex;
+            flex-direction:row;
+            align-items: center;
+            .coupon{
+                display: flex;
+                background: #f50;
+                color: #fff;
+                font-size: 18px;
+                border-top-right-radius: -40%;
+                border-bottom-right-radius: -40%;
+                padding: 3px 8px;
+                // border-radius: 5px;
+            }
+            .price{
+                color: rgb(230, 67, 64);
+                font-size: 38px;
+                display: flex;
+                margin-left: 10px;
+            }
+        }
+        .right{
+            font-size: 22px;
+            color: #999;
+        }
+    }
+
+    .coupon_bg_panal{
+        padding: 0 20px;
+        border: 1px solid #f00;
+        height: 170px;;
+    }
+}

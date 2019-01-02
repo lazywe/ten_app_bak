@@ -1,16 +1,21 @@
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
-import { Component } from '@tarojs/taro'
+import Taro, { Component } from '@tarojs/taro'
 import { AtGrid,AtActivityIndicator } from "taro-ui"
 import ItemOne from "../item_one/item_one"
-
-if (process.env.TARO_ENV === "weapp") {
-  require("taro-ui/dist/weapp/css/index.css")
-} else if (process.env.TARO_ENV === "h5") {
-  require("taro-ui/dist/h5/css/index.css")
-}
 import './list_layout.scss'
 
 class ListLayout extends Component {
+
+  /**
+   * 前往详情
+   *
+   * @memberof Index
+   */
+  onGoDetail = (e) => {
+    Taro.navigateTo({
+      url:`/pages/detail/detail?id=${e.currentTarget.dataset.id}`
+    });
+  }
 
   render() {
     const {publics, coupons, loading } = this.props;
@@ -18,11 +23,12 @@ class ListLayout extends Component {
         {/* 轮播 */}
         {
           publics && publics.banners.length > 0 && (
-                <Swiper vertical={false} style="border:1px solid #f00;" circular>
+                <Swiper vertical={false} circular indicatorDots>
                   {
                     publics.banners.map((item, index) => (
                         <SwiperItem key={index}>
                         <Image
+                            style="width:100%;"
                             mode='widthFix'
                             src={item.image}
                         />
@@ -40,7 +46,7 @@ class ListLayout extends Component {
         <View className="goods-list-container">
           { coupons && coupons.length>0 && (
               coupons.map((item) => 
-                <ItemOne item={item}/>
+                <ItemOne onClick={this.onGoDetail} item={item}/>
               )
             )
           }

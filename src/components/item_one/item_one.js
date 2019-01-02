@@ -1,6 +1,5 @@
 import { View,Image, Text } from '@tarojs/components'
 import { Component } from '@tarojs/taro'
-import { AtButton } from 'taro-ui'
 if (process.env.TARO_ENV === "weapp") {
     require("taro-ui/dist/weapp/css/index.css")
 } else if (process.env.TARO_ENV === "h5") {
@@ -11,8 +10,8 @@ import './item_one.scss'
 class ItemOne extends Component {
 
     render() {
-        const { item } = this.props;
-        return <View className='at-row first_item'>
+        const { item, onClick } = this.props;
+        return <View className='at-row first_item' data-id={item.num_iid} onClick={onClick}>
             <View className='at-col at-col-4 img_view first_left'>
                 <Image mode='widthFix' className="image" src={item.pict_url} />
             </View>
@@ -33,7 +32,7 @@ class ItemOne extends Component {
                 <View className='at-row-costom'>
                     <View className='at-col-costom price'>¥{item.zk_final_price}<Text>券后</Text></View>
                     <View className='at-col-costom button'>
-                        <AtButton type='secondary' size='small'>前往领券</AtButton>
+                        <View className="go_button">前往领券</View>
                     </View>
                 </View>
             </View>

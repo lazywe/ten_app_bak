@@ -6,11 +6,6 @@ import Index from "./pages/Index.1";
 import dva from './utils/dva'
 import './app.scss'
 
-if (process.env.TARO_ENV === "weapp") {
-  require("taro-ui/dist/weapp/css/index.css")
-} else if (process.env.TARO_ENV === "h5") {
-  require("taro-ui/dist/h5/css/index.css")
-}
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -27,12 +22,14 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/detail/detail'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: 'test',
       navigationBarTextStyle: 'black'
     }
   }
